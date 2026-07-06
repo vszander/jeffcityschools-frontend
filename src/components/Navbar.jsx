@@ -1,7 +1,20 @@
 import { useEffect, useState } from "react";
 
+const BACKEND_BASE_URL =
+  import.meta.env.VITE_BACKEND_BASE_URL ||
+  "https://backend.jeffcityschools.net";
+
 const SESSION_URL =
-  import.meta.env.VITE_AUTH_SESSION_URL || "/api/auth/session/";
+  import.meta.env.VITE_AUTH_SESSION_URL ||
+  `${BACKEND_BASE_URL}/api/auth/session/`;
+
+const CURRICULUM_URL =
+  import.meta.env.VITE_CURRICULUM_URL || `${BACKEND_BASE_URL}/curriculum/`;
+
+const ADMIN_URL =
+  import.meta.env.VITE_ADMIN_URL || `${BACKEND_BASE_URL}/admin/`;
+
+const SITE_ENV = import.meta.env.VITE_SITE_ENV || import.meta.env.MODE;
 
 function safeCaps(session) {
   return session?.user?.capabilities || {};
@@ -76,24 +89,17 @@ export default function Navbar() {
         <span className="brand-mark">JC</span>
         <span className="brand-text">
           <strong>Jeff City Schools</strong>
-          <small>Engineering Gateway</small>
+          <small>Engineering Gateway</small>{" "}
+          <small className="env-tag">{SITE_ENV}</small>
         </span>
       </a>
 
       <nav className="nav-links" aria-label="Primary navigation">
         <a href="/">Home</a>
 
-        {caps.can_view_curriculum && (
-          <a href="https://backend.jeffcityschools.net/curriculum/">
-            Curriculum
-          </a>
-        )}
+        {caps.can_view_curriculum && <a href={CURRICULUM_URL}>Curriculum</a>}
 
-        {caps.can_edit_curriculum && (
-          <a href="https://backend.jeffcityschools.net/admin/">
-            Manage Curriculum
-          </a>
-        )}
+        {caps.can_edit_curriculum && <a href={ADMIN_URL}>Manage Curriculum</a>}
 
         {caps.can_view_iot && <a href="/iot">IoT Dashboard</a>}
 
@@ -103,9 +109,7 @@ export default function Navbar() {
           <a href="/substitute-plans">Substitute Plans</a>
         )}
 
-        {caps.can_access_admin && (
-          <a href="https://backend.jeffcityschools.net/admin/">Admin</a>
-        )}
+        {caps.can_access_admin && <a href={ADMIN_URL}>Admin</a>}
       </nav>
 
       <div className="nav-session">
@@ -114,10 +118,7 @@ export default function Navbar() {
         ) : session.authenticated ? (
           <span className="session-pill session-ok">{userLabel(session)}</span>
         ) : (
-          <a
-            className="session-pill session-login"
-            href="https://backend.jeffcityschools.net/admin/login/"
-          >
+          <a className="session-pill session-login" href={`${ADMIN_URL}login/`}>
             Login
           </a>
         )}

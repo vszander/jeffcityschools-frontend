@@ -207,6 +207,14 @@
   }
 }
 
+.env-tag {
+  margin-top: 0.2rem;
+  color: rgba(183, 154, 93, 0.92);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 h1 {
   margin: 0;
   font-size: clamp(2.4rem, 7vw, 5rem);
