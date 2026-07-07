@@ -11,10 +11,16 @@ const SESSION_URL =
 const CURRICULUM_URL =
   import.meta.env.VITE_CURRICULUM_URL || `${BACKEND_BASE_URL}/curriculum/`;
 
-const LOGIN_URL = `${BACKEND_BASE_URL}/accounts/login/`;
+const FRONTEND_BASE_URL =
+  import.meta.env.VITE_FRONTEND_BASE_URL || "https://www.jeffcityschools.net";
+
+const LOGIN_URL =
+  import.meta.env.VITE_LOGIN_URL ||
+  `${BACKEND_BASE_URL}/accounts/login/?next=${encodeURIComponent(FRONTEND_BASE_URL)}`;
 
 const LOGOUT_URL =
-  import.meta.env.VITE_LOGOUT_URL || `${BACKEND_BASE_URL}/accounts/logout/`;
+  import.meta.env.VITE_LOGOUT_URL ||
+  `${BACKEND_BASE_URL}/accounts/logout/?next=${encodeURIComponent(FRONTEND_BASE_URL)}`;
 
 const ADMIN_URL =
   import.meta.env.VITE_ADMIN_URL || `${BACKEND_BASE_URL}/admin/`;
