@@ -11,6 +11,11 @@ const SESSION_URL =
 const CURRICULUM_URL =
   import.meta.env.VITE_CURRICULUM_URL || `${BACKEND_BASE_URL}/curriculum/`;
 
+const LOGIN_URL = `${BACKEND_BASE_URL}/accounts/login/`;
+
+const LOGOUT_URL =
+  import.meta.env.VITE_LOGOUT_URL || `${BACKEND_BASE_URL}/accounts/logout/`;
+
 const ADMIN_URL =
   import.meta.env.VITE_ADMIN_URL || `${BACKEND_BASE_URL}/admin/`;
 
@@ -116,9 +121,14 @@ export default function Navbar() {
         {session.loading ? (
           <span className="session-pill">Checking session…</span>
         ) : session.authenticated ? (
-          <span className="session-pill session-ok">{userLabel(session)}</span>
+          <span className="session-pill session-ok">
+            {userLabel(session)}
+            <a className="session-pill session-login" href={LOGOUT_URL}>
+              Logout
+            </a>
+          </span>
         ) : (
-          <a className="session-pill session-login" href={`${ADMIN_URL}login/`}>
+          <a className="session-pill session-login" href={LOGIN_URL}>
             Login
           </a>
         )}
