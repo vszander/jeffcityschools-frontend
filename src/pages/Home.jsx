@@ -1,4 +1,7 @@
+const backendBase = import.meta.env.VITE_BACKEND_BASE_URL;
+
 export default function Home() {
+  const curriculum_url = `${backendBase}/curriculum/`;
   return (
     <main className="page-shell">
       <section className="hero-card home-hero-card">
@@ -14,10 +17,7 @@ export default function Home() {
           </p>
 
           <div className="actions">
-            <a
-              className="primary-link"
-              href="https://backend.jeffcityschools.net/curriculum/"
-            >
+            <a className="primary-link" href={curriculum_url}>
               Open Curriculum Browser
             </a>
           </div>
