@@ -2,6 +2,7 @@ const backendBase = import.meta.env.VITE_BACKEND_BASE_URL;
 
 export default function Home() {
   const curriculum_url = `${backendBase}/curriculum/`;
+  const production_image = `https://www.jeffcityschools.net/images/eng-dragons-team-logo-design_sm.png`;
   return (
     <main className="page-shell">
       <section className="hero-card home-hero-card">
@@ -32,7 +33,7 @@ export default function Home() {
           aria-label="Engineering Dragons logo"
         >
           <img
-            src="/eng-dragons-team-logo-design_sm.png"
+            src={production_image}
             alt="Engineering Dragons team logo"
             className="home-logo"
           />
